@@ -3,8 +3,8 @@ info:
   title: Product Prices API for Spring Boot
   description: |-
     This is a documentation of the API for the Product Prices API for Spring Boot.
-
-    -/api/v1/prices
+    - /api/v1/prices/getAll
+    - /api/v1/prices
 
   termsOfService: http://swagger.io/terms/
   contact:
@@ -20,9 +20,91 @@ servers:
   - url: https://localhost:8080/api/v1/
     description: Local server
 tags:
-  - name: prices
-    description: All prices
-    externalDocs:
-      description: Find out more
-      url: http://swagger.io
+  - name: PricesController
+    description: Controller for managing product prices
 paths:
+  /prices/getAll:
+    get:
+      tags:
+        - PricesController
+      summary: Retrieve all prices
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Price'
+  /api/v1/prices:
+    get:
+      tags:
+        - PricesController
+      summary: Retrieve prices by brandId, startDate, and productId
+      parameters:
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The brand identifier
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The start date
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The product identifier
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceDTO'
+components:
+  schemas:
+    Price:
+      type: object
+      properties:
+        brandId:
+          type: integer
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        priceList:
+          type: integer
+        productId:
+          type: integer
+        priority:
+          type: integer
+        price:
+          type: number
+        currency:
+          type: string
+    PriceDTO:
+      type: object
+      properties:
+        brandId:
+          type: integer
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        priceList:
+          type: integer
+        productId:
+          type: integer
+        price:
+          type: number
