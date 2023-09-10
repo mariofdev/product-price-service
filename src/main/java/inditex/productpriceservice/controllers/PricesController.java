@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import inditex.productpriceservice.Model.PriceDTO;
 import inditex.productpriceservice.entities.Price;
 import inditex.productpriceservice.services.PricesService;
 import io.swagger.annotations.Api;
@@ -30,7 +32,7 @@ public class PricesController {
 
     @ApiOperation("Obtener datos de los precios por brandId, startDate y productId")
     @GetMapping("/prices")
-    public Iterable<Price> findByBrandIdAndStartDateAndProductId( 
+    public Iterable<PriceDTO> findByBrandIdAndStartDateAndProductId( 
     @RequestParam(value = "brandId", required = true) String brandId,
     @RequestParam(value = "startDate", required = true) String startDateStr,
     @RequestParam(value = "productId", required = true) String productId) throws ParseException{
