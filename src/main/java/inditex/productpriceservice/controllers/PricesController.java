@@ -32,7 +32,7 @@ public class PricesController {
 
     @ApiOperation("Obtener datos de los precios por brandId, startDate y productId")
     @GetMapping("/prices")
-    public Iterable<PriceDTO> findByBrandIdAndStartDateAndProductId( 
+    public PriceDTO findByBrandIdAndStartDateAndProductId( 
     @RequestParam(value = "brandId", required = true) String brandId,
     @RequestParam(value = "startDate", required = true) String startDateStr,
     @RequestParam(value = "productId", required = true) String productId) throws ParseException{
