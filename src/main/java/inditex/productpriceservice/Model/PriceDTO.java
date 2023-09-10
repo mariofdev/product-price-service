@@ -71,10 +71,5 @@ public class PriceDTO {
     public void setPrice(double price) {
         this.price = price;
     }
-    
 
-
-}
-
-    
 }
