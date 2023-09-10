@@ -1,5 +1,7 @@
 package inditex.productpriceservice.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +19,16 @@ public class PricesService {
     @Autowired
     private PricesRepository pricesRepository;
 
-    public PriceDTO findByBrandIdAndStartDateAndProductId(String brandId, Date startDate, String productId) {
+    public PriceDTO findByBrandIdAndStartDateAndProductId(String brandIdStr, String startDateStr, String productIdStr) throws ParseException {
+
+        // Transformamos startDate a Date
+        Date startDate = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss").parse(startDateStr);
+        
+        // Transformamos brandId a int
+        int brandId = Integer.parseInt(brandIdStr);
+        
+        // Transformamos productId a long
+        long productId = Long.parseLong(productIdStr);
 
         /*
          * Establecemos una lógica de de filtrado siguiente:
@@ -25,7 +36,7 @@ public class PricesService {
          *  - Del listado obtenido en el punto anterior, obtenemos los precios que están vigentes por fecha (start_date menor al start_date dado y end_date mayor o igual que el start_date dado)
          *  - Del listado obtenido en el punto anterior, obtenemos el precio con mayor priority
          */
-        
+
         // Recuperamos todos los precios para la combinación de brandId y productId dados
         List<Price> allPrices = pricesRepository.findByBrandIdAndProductId(brandId, productId);
 

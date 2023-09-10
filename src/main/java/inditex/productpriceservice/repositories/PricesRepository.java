@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PricesRepository extends JpaRepository<Price, Long> {
     Iterable<Price> findByBrandIdAndStartDateAndProductId(int brandId, Date startDate, long productId);
 
-    List<Price> findByBrandIdAndProductId(String brandId, String productId);
+    List<Price> findByBrandIdAndProductId(int brandId, long productId);
 }

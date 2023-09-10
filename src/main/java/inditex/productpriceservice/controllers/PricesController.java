@@ -36,9 +36,6 @@ public class PricesController {
     @RequestParam(value = "brandId", required = true) String brandId,
     @RequestParam(value = "startDate", required = true) String startDateStr,
     @RequestParam(value = "productId", required = true) String productId) throws ParseException{
-
-        // Transformamos startDate a Date
-        Date startDate = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss").parse(startDateStr);
-        return pricesService.findByBrandIdAndStartDateAndProductId(brandId, startDate, productId);
+        return pricesService.findByBrandIdAndStartDateAndProductId(brandId, startDateStr, productId);
     }
 }
