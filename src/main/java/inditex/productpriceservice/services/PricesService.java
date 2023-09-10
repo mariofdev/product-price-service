@@ -1,6 +1,8 @@
 package inditex.productpriceservice.services;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,16 @@ public class PricesService {
     @Autowired
     private PricesRepository pricesRepository;
 
-    public Iterable<PriceDTO> findByBrandIdAndStartDateAndProductId(String brandId, Date startDate, String productId) {
+    public ArrayList<PriceDTO> findByBrandIdAndStartDateAndProductId(String brandId, Date startDate, String productId) {
         int brandIdInt = Integer.parseInt(brandId);
         long productIdLong = Long.parseLong(productId);
-        return pricesRepository.findByBrandIdAndStartDateAndProductId(brandIdInt, startDate, productIdLong);
+        Iterable<Price> prices = pricesRepository.findByBrandIdAndStartDateAndProductId(brandIdInt, startDate, productIdLong);
+        ArrayList<PriceDTO> pricesDTO = new ArrayList<PriceDTO>();
+        for (Price price : prices) {
+            PriceDTO priceDTO = new PriceDTO(price.getBrandId(), price.getStartDate(), price.getEndDate(), price.getPriceList(), price.getProductId(), price.getPrice());
+            pricesDTO.add(priceDTO);
+        }
+        return pricesDTO;
     }
 
     public Iterable<Price> findAll() {
