@@ -15,7 +15,8 @@ public class PricesService {
     private PricesRepository pricesRepository;
 
     public Iterable<Price> findByBrandIdAndStartDateAndProductId(String brandId, Date startDate, String productId) {
-        long brandIdInt = Long.parseLong(brandId);
-        return pricesRepository.findByBrandIdAndStartDateAndProductId(brandIdInt, startDate, productId);
+        int brandIdInt = Integer.parseInt(brandId);
+        long productIdLong = Long.parseLong(productId);
+        return pricesRepository.findByBrandIdAndStartDateAndProductId(brandIdInt, startDate, productIdLong);
     }
 }

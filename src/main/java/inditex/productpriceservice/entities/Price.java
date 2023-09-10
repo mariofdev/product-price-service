@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "PRICES")
 public class Price {
-    @Id
+
     @Column(name = "BRAND_ID")
     private int brandId;
 
@@ -20,6 +20,7 @@ public class Price {
     @Column(name = "END_DATE")
     private Date endDate;
 
+    @Id
     @Column(name = "PRICE_LIST")
     private int priceList;
 
