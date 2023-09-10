@@ -15,6 +15,7 @@ public class PricesService {
     private PricesRepository pricesRepository;
 
     public Iterable<Price> findByBrandIdAndStartDateAndProductId(String brandId, Date startDate, String productId) {
-        return pricesRepository.findByBrandIdAndStartDateAndProductId(brandId, startDate, productId);
+        int brandIdInt = Integer.parseInt(brandId);
+        return pricesRepository.findByBrandIdAndStartDateAndProductId(brandIdInt, startDate, productId);
     }
 }
