@@ -13,6 +13,6 @@ public class BrandsService {
 
     public Iterable<Brand> findByBrandId(String brandId) {
         int brandIdInt = Integer.parseInt(brandId);
-        return brandsRepository.findBrandByBrandId(brandIdInt);
+        return brandsRepository.findBrandById(brandIdInt);
     }
 }
