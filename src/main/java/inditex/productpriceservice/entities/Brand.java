@@ -11,7 +11,7 @@ public class Brand {
     
     @Id
     @Column(name = "BRAND_ID")
-    private long id;
+    private int id;
 
     @Column(name = "BRAND_NAME")
     private String brandName;
