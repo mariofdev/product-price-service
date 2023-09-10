@@ -6,5 +6,5 @@ import inditex.productpriceservice.entities.Brand;
 
 @Repository
 public interface BrandsRepository extends JpaRepository<Brand, Long> {
-    Iterable<Brand> findBrandByBrandId(int id);    
+    Iterable<Brand> findBrandById(int id);    
 }
