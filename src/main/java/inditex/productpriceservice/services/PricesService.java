@@ -19,4 +19,8 @@ public class PricesService {
         long productIdLong = Long.parseLong(productId);
         return pricesRepository.findByBrandIdAndStartDateAndProductId(brandIdInt, startDate, productIdLong);
     }
+
+    public Iterable<Price> findAll() {
+        return pricesRepository.findAll();
+    }
 }

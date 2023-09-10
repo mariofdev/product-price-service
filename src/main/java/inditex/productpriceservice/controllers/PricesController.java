@@ -23,13 +23,13 @@ public class PricesController {
     private PricesService pricesService;
     
     @ApiOperation("Obtener todos los precios")
-    @GetMapping("/prices")
-    public Iterable<Price> getProducts() {
-        return null;
+    @GetMapping("/prices/getAll")
+    public Iterable<Price> getPrices() {
+        return pricesService.findAll();
     }
 
     @ApiOperation("Obtener datos de los precios por brandId, startDate y productId")
-    @GetMapping("/prices/")
+    @GetMapping("/prices")
     public Iterable<Price> findByBrandIdAndStartDateAndProductId( 
     @RequestParam(value = "brandId", required = true) String brandId,
     @RequestParam(value = "startDate", required = true) String startDateStr,
