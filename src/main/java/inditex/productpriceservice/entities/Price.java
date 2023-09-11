@@ -5,13 +5,16 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PRICES")
 public class Price {
 
-    @Column(name = "BRAND_ID")
+    @ManyToOne
+    @JoinColumn(name = "BRAND_ID", referencedColumnName = "BRAND_ID")
     private int brandId;
 
     @Column(name = "START_DATE")
